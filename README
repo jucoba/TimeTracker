@@ -1,1 +1,5 @@
-ECHO est  activado.
+Tracks the time spent int alt-tab operations
+run ruby altTabLogger.rb
+
+Tracks the time spent on active window
+run ruby windChangeLogger.rb
