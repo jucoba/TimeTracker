@@ -4,6 +4,7 @@
 
 require 'Win32API'
 require 'date'
+require './util'
 
 def savefile(filename,text)
 files = File.open(filename,'a')
@@ -44,7 +45,7 @@ def capturar
 				if (operInited)
 					operInited = false
 					timeSpent = Time.now - initOper
-					savefile("atlTab.log","#{DateTime.now},#{timeSpent}")
+					Util.saveToFile("atlTab.log","#{DateTime.now},#{timeSpent}")
 				end
 				alttabpressed = false
 			end

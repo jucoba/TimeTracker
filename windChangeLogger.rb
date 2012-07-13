@@ -4,42 +4,25 @@
 
 require 'Win32API'
 require 'date'
+require './util'
 
-def savefile(filename,text)
-files = File.open(filename,'a')
-files.puts text+"\n"
-files.close
-end
+
 
 def capturar
 
-	require 'Win32API'
 	
-	getForegroundWindow = Win32API.new('user32', 'GetForegroundWindow', [], 'L')
-	getWindowText = Win32API.new('user32', 'GetWindowText', ['L', 'P', 'I'], 'I')
-
-	window_handle = getForegroundWindow.Call()
-		
-	title_buffer1 = ' ' * 256
-	getWindowText.Call(window_handle, title_buffer1, 256)
+	title1 = Util.getActiveWindowTitle
 	initTime = Time.now
 
 	while 1
-		getForegroundWindow = Win32API.new('user32', 'GetForegroundWindow', [], 'L')
-		getWindowText = Win32API.new('user32', 'GetWindowText', ['L', 'P', 'I'], 'I')
-
-		window_handle = getForegroundWindow.Call()
+		title2 = Util.getActiveWindowTitle
 		
 		
-		title_buffer2 = ' ' * 256
-		getWindowText.Call(window_handle, title_buffer2, 256)
-		
-		
-		if (title_buffer1 != title_buffer2)
+		if (title1 != title2)
 			timeElapsed = Time.now - initTime 			
-			savefile('activeWindows.txt',"#{DateTime.now},#{timeElapsed},#{title_buffer1}")
-			puts timeElapsed
-			title_buffer1 = title_buffer2
+			Util.saveToFile('activeWindows.txt',"#{DateTime.now},#{timeElapsed},#{title1}")
+			#puts timeElapsed
+			title1 = title2
 			initTime = Time.now
 		end
 	end
