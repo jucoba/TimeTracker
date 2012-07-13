@@ -19,8 +19,9 @@ def capturar
 		
 		
 		if (title1 != title2)
-			timeElapsed = Time.now - initTime 			
-			Util.saveToFile('activeWindows.txt',"#{DateTime.now},#{timeElapsed},#{title1}")
+			timeElapsed = Time.now - initTime 	
+			formatedTime = DateTime.now.strftime('%Y/%m/%d %H:%M:%S')
+			Util.saveToFile('activeWindows.txt',"#{formatedTime},#{timeElapsed},#{title1}")
 			#puts timeElapsed
 			title1 = title2
 			initTime = Time.now

@@ -45,7 +45,8 @@ def capturar
 				if (operInited)
 					operInited = false
 					timeSpent = Time.now - initOper
-					Util.saveToFile("atlTab.log","#{DateTime.now},#{timeSpent}")
+					formatedTime = DateTime.now.strftime('%Y/%m/%d %H:%M:%S')
+					Util.saveToFile("atlTab.log","#{formatedTime},#{timeSpent}")
 				end
 				alttabpressed = false
 			end
