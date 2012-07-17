@@ -26,6 +26,7 @@ def capturar
 			title1 = title2
 			initTime = Time.now
 		end
+		sleep 1
 	end
 	
 end
